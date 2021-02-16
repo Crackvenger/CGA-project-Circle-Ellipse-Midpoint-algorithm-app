@@ -1,7 +1,7 @@
 ﻿Imports System.Drawing
 Public Class Form1
     Dim radius As Integer
-    Dim x, y, b, fx, fy As Integer
+    Dim x, y, b, fx, fy, w, h As Integer
     Dim d As Long
     Dim rx_sqr, ry_sqr As Integer
     Dim rx, ry As Integer
@@ -25,12 +25,16 @@ Public Class Form1
         Call ellipse()
     End Sub
 
+    Private Sub btnDraw_Click(sender As Object, e As EventArgs) Handles btnDraw.Click
+        Call MidPoint_Circle(Integer.Parse(tbX.Text), Integer.Parse(tbY.Text), Integer.Parse(tbRadius.Text))
+    End Sub
+
     Private Sub btnCircle_Click(sender As Object, e As EventArgs) Handles btnCircle.Click
-        Call MidPoint_Circle()
+
     End Sub
 
 
-    Private Sub circlePoints()
+    Private Sub circlePoints(x_center, y_center, width, height)
         'We initially used small elipses to repesent a pixel..Until we learned how to actually set pixels'
         'gfx.DrawEllipse(Pens.Red, New Rectangle(x_center + x, y_center + y, 10, 10))
         'gfx.DrawEllipse(Pens.Red, New Rectangle(x_center + y, y_center + x, 10, 10))
@@ -40,29 +44,27 @@ Public Class Form1
         'gfx.DrawEllipse(Pens.Red, New Rectangle(x_center - y, y_center - x, 10, 10))
         'gfx.DrawEllipse(Pens.Red, New Rectangle(x_center + y, y_center - x, 10, 10))
         'gfx.DrawEllipse(Pens.Red, New Rectangle(x_center + x, y_center - y, 10, 10))
-        gfx.DrawImage(bm, x_center + x, y_center + y, 10, 10)
-        gfx.DrawImage(bm, x_center + y, y_center + x, 10, 10)
-        gfx.DrawImage(bm, x_center - y, y_center + x, 10, 10)
-        gfx.DrawImage(bm, x_center - x, y_center + y, 10, 10)
-        gfx.DrawImage(bm, x_center - x, y_center - y, 10, 10)
-        gfx.DrawImage(bm, x_center - y, y_center - x, 10, 10)
-        gfx.DrawImage(bm, x_center + y, y_center - x, 10, 10)
-        gfx.DrawImage(bm, x_center + x, y_center - y, 10, 10)
+        gfx.DrawImage(bm, x_center + x, y_center + y, width, height)
+        gfx.DrawImage(bm, x_center + y, y_center + x, width, height)
+        gfx.DrawImage(bm, x_center - y, y_center + x, width, height)
+        gfx.DrawImage(bm, x_center - x, y_center + y, width, height)
+        gfx.DrawImage(bm, x_center - x, y_center - y, width, height)
+        gfx.DrawImage(bm, x_center - y, y_center - x, width, height)
+        gfx.DrawImage(bm, x_center + y, y_center - x, width, height)
+        gfx.DrawImage(bm, x_center + x, y_center - y, width, height)
 
     End Sub
 
     Public Sub MidPoint_Circle(x_center, y_center, radius)
         gfx = pbDrawing.CreateGraphics
         bm.SetPixel(0, 0, Color.Red)
-        radius = 100
         x = 0
         y = radius
-        x_center = 190
-        y_center = 200
         d = (5 / 4) - radius
-
+        w = 10
+        h = 10
         Do While y > x
-            Call circlePoints()
+            circlePoints(x_center, y_center, w, h)
             If d < 0 Then
                 d = d + (2 * x) + 1
             Else
@@ -74,54 +76,6 @@ Public Class Form1
 
     End Sub
 
-    Public Sub Midpoint_Elipse()
-        rx = 20
-        ry = 30
-        x = 0
-        y = ry
-        rx_sqr = rx * rx
-        ry_sqr = ry * ry
-        x_center = pbDrawing.Width / 2
-        y_center = pbDrawing.Height / 2
-        fx = ry_sqr * (2 * y - 1)
-        fy = 2 * rx_sqr * (x + 1)
-        d = 4 * ry_sqr - 4 * rx_sqr * ry + rx_sqr
-        'this part is for region 1'
-        Do While (2 * rx_sqr * (x + 1)) < (ry_sqr * (2 * y - 1))
-            gfx.DrawEllipse(Pens.Red, New Rectangle(x_center + x, y_center + y, 10, 10))
-            gfx.DrawEllipse(Pens.Red, New Rectangle(x_center - x, y_center - y, 10, 10))
-            gfx.DrawEllipse(Pens.Red, New Rectangle(x_center + x, y_center - y, 10, 10))
-            gfx.DrawEllipse(Pens.Red, New Rectangle(x_center - x, y_center + y, 10, 10))
-            'putpixel(xc + x, yc - y, WHITE);
-            'putpixel(xc - x, yc + y, WHITE);
-            'putpixel(xc + x, yc + y, WHITE);
-            'putpixel(xc - x, yc - y, WHITE);
-            If d > 0 Then
-                y -= 1
-                d += ry_sqr * (8 * x + 12) + rx_sqr * (8 - 8 * y)
-            Else
-                d += ry_sqr * (8 * x + 12)
-            End If
-            x += 1
-        Loop
-
-        'this part is for region 2'
-        d = ry_sqr * ((2 * x + 1) * (2 * x + 1)) + 4 * rx_sqr * ((y - 1) * (y - 1)) - 4 * rx_sqr * ry_sqr
-        Do While y > 0
-
-            If d < 0 Then
-                x += 1
-                d = d + ry_sqr * (8 * x + 8) + rx_sqr * (12 - 8 * y)
-            Else
-                d = d + rx_sqr * (12 - 8 * y)
-            End If
-            y -= 1
-            gfx.DrawEllipse(Pens.Red, New Rectangle(x_center + x, y_center + y, 10, 10))
-            gfx.DrawEllipse(Pens.Red, New Rectangle(x_center - x, y_center - y, 10, 10))
-            gfx.DrawEllipse(Pens.Red, New Rectangle(x_center + x, y_center - y, 10, 10))
-            gfx.DrawEllipse(Pens.Red, New Rectangle(x_center - x, y_center + y, 10, 10))
-        Loop
-    End Sub
 
     'New Elipse code made made by Indhira'
     Public Sub ellipse()

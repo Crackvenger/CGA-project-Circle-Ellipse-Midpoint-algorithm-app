@@ -26,14 +26,17 @@ Partial Class Form1
         Me.pbDrawing = New System.Windows.Forms.PictureBox()
         Me.btnElipse = New System.Windows.Forms.Button()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.btnDraw = New System.Windows.Forms.Button()
+        Me.tbRadius = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.tbY = New System.Windows.Forms.TextBox()
         Me.tbX = New System.Windows.Forms.TextBox()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label1 = New System.Windows.Forms.Label()
+        Me.lblYcenter = New System.Windows.Forms.Label()
+        Me.lblXcenter = New System.Windows.Forms.Label()
         Me.lblX = New System.Windows.Forms.Label()
         Me.lblY = New System.Windows.Forms.Label()
-        Me.tbRadius = New System.Windows.Forms.TextBox()
         CType(Me.pbDrawing, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
@@ -71,12 +74,15 @@ Partial Class Form1
         'Panel1
         '
         Me.Panel1.BackColor = System.Drawing.Color.Snow
+        Me.Panel1.Controls.Add(Me.Label1)
+        Me.Panel1.Controls.Add(Me.ComboBox1)
+        Me.Panel1.Controls.Add(Me.btnDraw)
         Me.Panel1.Controls.Add(Me.tbRadius)
         Me.Panel1.Controls.Add(Me.Label3)
         Me.Panel1.Controls.Add(Me.tbY)
         Me.Panel1.Controls.Add(Me.tbX)
-        Me.Panel1.Controls.Add(Me.Label2)
-        Me.Panel1.Controls.Add(Me.Label1)
+        Me.Panel1.Controls.Add(Me.lblYcenter)
+        Me.Panel1.Controls.Add(Me.lblXcenter)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Left
         Me.Panel1.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
@@ -84,10 +90,45 @@ Partial Class Form1
         Me.Panel1.Size = New System.Drawing.Size(464, 855)
         Me.Panel1.TabIndex = 3
         '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(155, 108)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(56, 20)
+        Me.Label1.TabIndex = 8
+        Me.Label1.Text = "Shape"
+        '
+        'ComboBox1
+        '
+        Me.ComboBox1.FormattingEnabled = True
+        Me.ComboBox1.Items.AddRange(New Object() {"Circle", "Elipse"})
+        Me.ComboBox1.Location = New System.Drawing.Point(222, 105)
+        Me.ComboBox1.Name = "ComboBox1"
+        Me.ComboBox1.Size = New System.Drawing.Size(120, 28)
+        Me.ComboBox1.TabIndex = 7
+        '
+        'btnDraw
+        '
+        Me.btnDraw.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.btnDraw.Location = New System.Drawing.Point(142, 203)
+        Me.btnDraw.Name = "btnDraw"
+        Me.btnDraw.Size = New System.Drawing.Size(94, 38)
+        Me.btnDraw.TabIndex = 6
+        Me.btnDraw.Text = "Draw"
+        Me.btnDraw.UseVisualStyleBackColor = True
+        '
+        'tbRadius
+        '
+        Me.tbRadius.Location = New System.Drawing.Point(222, 56)
+        Me.tbRadius.Name = "tbRadius"
+        Me.tbRadius.Size = New System.Drawing.Size(74, 26)
+        Me.tbRadius.TabIndex = 5
+        '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(172, 56)
+        Me.Label3.Location = New System.Drawing.Point(155, 56)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(61, 20)
         Me.Label3.TabIndex = 4
@@ -107,23 +148,23 @@ Partial Class Form1
         Me.tbX.Size = New System.Drawing.Size(74, 26)
         Me.tbX.TabIndex = 2
         '
-        'Label2
+        'lblYcenter
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(33, 108)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(19, 20)
-        Me.Label2.TabIndex = 1
-        Me.Label2.Text = "Y"
+        Me.lblYcenter.AutoSize = True
+        Me.lblYcenter.Location = New System.Drawing.Point(33, 108)
+        Me.lblYcenter.Name = "lblYcenter"
+        Me.lblYcenter.Size = New System.Drawing.Size(19, 20)
+        Me.lblYcenter.TabIndex = 1
+        Me.lblYcenter.Text = "Y"
         '
-        'Label1
+        'lblXcenter
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(33, 56)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(20, 20)
-        Me.Label1.TabIndex = 0
-        Me.Label1.Text = "X"
+        Me.lblXcenter.AutoSize = True
+        Me.lblXcenter.Location = New System.Drawing.Point(33, 56)
+        Me.lblXcenter.Name = "lblXcenter"
+        Me.lblXcenter.Size = New System.Drawing.Size(20, 20)
+        Me.lblXcenter.TabIndex = 0
+        Me.lblXcenter.Text = "X"
         '
         'lblX
         '
@@ -144,13 +185,6 @@ Partial Class Form1
         Me.lblY.Size = New System.Drawing.Size(30, 17)
         Me.lblY.TabIndex = 5
         Me.lblY.Text = "Y - "
-        '
-        'tbRadius
-        '
-        Me.tbRadius.Location = New System.Drawing.Point(239, 56)
-        Me.tbRadius.Name = "tbRadius"
-        Me.tbRadius.Size = New System.Drawing.Size(74, 26)
-        Me.tbRadius.TabIndex = 5
         '
         'Form1
         '
@@ -180,10 +214,13 @@ Partial Class Form1
     Friend WithEvents Panel1 As Panel
     Friend WithEvents tbY As TextBox
     Friend WithEvents tbX As TextBox
-    Friend WithEvents Label2 As Label
-    Friend WithEvents Label1 As Label
+    Friend WithEvents lblYcenter As Label
+    Friend WithEvents lblXcenter As Label
     Friend WithEvents lblX As Label
     Friend WithEvents lblY As Label
     Friend WithEvents Label3 As Label
     Friend WithEvents tbRadius As TextBox
+    Friend WithEvents btnDraw As Button
+    Friend WithEvents Label1 As Label
+    Friend WithEvents ComboBox1 As ComboBox
 End Class
