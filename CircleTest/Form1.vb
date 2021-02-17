@@ -9,29 +9,50 @@ Public Class Form1
     Dim x_center As Integer
     Dim y_center As Integer
 
+    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Me.WindowState = FormWindowState.Maximized
+
+        ComboColor.Items.Add("Red")
+        ComboColor.Items.Add("Green")
+        ComboColor.Items.Add("Blue")
+        ComboColor.Items.Add("Yellow")
+        ComboColor.Items.Add("Purple")
+
+        ComboSize.Items.Add("8")
+        ComboSize.Items.Add("6")
+        ComboSize.Items.Add("4")
+        ComboSize.Items.Add("2")
+    End Sub
 
     Dim bm As New Bitmap(1, 1)
     Dim gfx As Graphics
 
-    Private Sub pbDrawing_MouseClick(sender As Object, e As MouseEventArgs) Handles pbDrawing.MouseClick
-        Dim MouseX As String = e.X
-        Dim MouseY As String = e.Y
-
-        tbX.Text = MouseX
-        tbY.Text = MouseY
-    End Sub
-
-    Private Sub btnElipse_Click(sender As Object, e As EventArgs) Handles btnElipse.Click
+    Private Sub btnEllipse_Click(sender As Object, e As EventArgs)
         Call ellipse()
-    End Sub
-
-    Private Sub btnDraw_Click(sender As Object, e As EventArgs) Handles btnDraw.Click
-        Call MidPoint_Circle(Integer.Parse(tbX.Text), Integer.Parse(tbY.Text), Integer.Parse(tbRadius.Text))
+        Dim data As ListViewItem
+        data = lvData.Items.Add(tbX.Text)
+        data.SubItems.Add(tbY.Text)
+        data.SubItems.Add(ComboShape.Text)
+        data.SubItems.Add(tbRadius.Text)
+        data.SubItems.Add(tbRadiusX.Text)
+        data.SubItems.Add(tbRadiusY.Text)
+        data.SubItems.Add(ComboColor.Text)
+        data.SubItems.Add(ComboSize.Text)
     End Sub
 
     Private Sub btnCircle_Click(sender As Object, e As EventArgs) Handles btnCircle.Click
-
+        Call MidPoint_Circle(Integer.Parse(tbX.Text), Integer.Parse(tbY.Text), Integer.Parse(tbRadius.Text))
+        Dim data As ListViewItem
+        data = lvData.Items.Add(tbX.Text)
+        data.SubItems.Add(tbY.Text)
+        data.SubItems.Add(ComboShape.Text)
+        data.SubItems.Add(tbRadius.Text)
+        data.SubItems.Add(tbRadiusX.Text)
+        data.SubItems.Add(tbRadiusY.Text)
+        data.SubItems.Add(ComboColor.Text)
+        data.SubItems.Add(ComboSize.Text)
     End Sub
+
 
 
     Private Sub circlePoints(x_center, y_center, width, height)
@@ -57,7 +78,7 @@ Public Class Form1
 
     Public Sub MidPoint_Circle(x_center, y_center, radius)
         gfx = pbDrawing.CreateGraphics
-        bm.SetPixel(0, 0, Color.Red)
+        'bm.SetPixel(0, 0, Color.Red)
         x = 0
         y = radius
         d = (5 / 4) - radius
@@ -77,31 +98,44 @@ Public Class Form1
     End Sub
 
 
-    'New Elipse code made made by Indhira'
     Public Sub ellipse()
 
-        'Dim gEllipse As Graphics = pbDrawing.CreateGraphics
         gfx = pbDrawing.CreateGraphics
-        'Dim imgEllipse As New Bitmap(1, 1)
-        bm.SetPixel(0, 0, Color.Indigo)
+        'bm.SetPixel(0, 0, Color.Indigo)
 
+        Select Case ComboColor.Text
+            Case "Red"
+                bm.SetPixel(0, 0, Color.Red)
+            Case "Green"
+                bm.SetPixel(0, 0, Color.Green)
+            Case "Blue"
+                bm.SetPixel(0, 0, Color.Blue)
+            Case "Yellow"
+                bm.SetPixel(0, 0, Color.Yellow)
+            Case "Purple"
+                bm.SetPixel(0, 0, Color.Purple)
+            Case "White"
+                bm.SetPixel(0, 0, Color.White)
+        End Select
 
-        Dim xc As Integer = 100
-        Dim yc As Integer = 100
-        Dim a As Integer = 75
-        Dim b As Integer = 25
+        Dim xc As Integer = tbX.Text
+        Dim yc As Integer = tbY.Text
+        Dim a As Integer = tbRadiusX.Text
+        Dim b As Integer = tbRadiusY.Text
 
         Dim d As Long
 
         Dim x = 0
-        Dim y = b 'y=b
+        Dim y = b
 
         Dim a_square = a * a
         Dim b_square = b * b
 
+        'region 1
         d = 4 * b_square - 4 * a_square * b + a_square
 
         Do
+            Dim size = CInt(ComboSize.Text)
             gfx.DrawImage(bm, x + xc, y + yc, 14, 14)
             gfx.DrawImage(bm, -x + xc, y + yc, 14, 14)
             gfx.DrawImage(bm, x + xc, -y + yc, 14, 14)
@@ -142,15 +176,12 @@ Public Class Form1
         End While
     End Sub
 
-    Private Sub pbDrawing_MouseMove(sender As Object, e As MouseEventArgs) Handles pbDrawing.MouseMove
-        Dim MouseX As String = e.X.ToString
-        Dim MouseY As String = e.Y.ToString
-
-        lblX.Text = "X - " + MouseX
-        lblY.Text = "Y - " + MouseY
-
-
+    Private Sub pbDrawing_MouseDown(sender As Object, e As MouseEventArgs) Handles pbDrawing.MouseDown
+        Cursor.Current = Cursors.Cross
+        If e.Button = MouseButtons.Left Then
+            tbX.Text = e.X
+            tbY.Text = e.Y
+        End If
     End Sub
-
 
 End Class
