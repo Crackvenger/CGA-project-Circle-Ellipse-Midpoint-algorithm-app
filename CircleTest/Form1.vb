@@ -181,11 +181,11 @@ Public Class Form1
         d = 4 * b_square - 4 * a_square * b + a_square
 
         Do
-            Dim size = CInt(ComboSize.Text)
-            gfx.DrawImage(bm, x + xc, y + yc, 14, 14)
-            gfx.DrawImage(bm, -x + xc, y + yc, 14, 14)
-            gfx.DrawImage(bm, x + xc, -y + yc, 14, 14)
-            gfx.DrawImage(bm, -x + xc, -y + yc, 14, 14)
+            Ssize = Integer.Parse(ComboSize.Text)
+            gfx.DrawImage(bm, x + xc, y + yc, Ssize, Ssize)
+            gfx.DrawImage(bm, -x + xc, y + yc, Ssize, Ssize)
+            gfx.DrawImage(bm, x + xc, -y + yc, Ssize, Ssize)
+            gfx.DrawImage(bm, -x + xc, -y + yc, Ssize, Ssize)
 
             If d > 0 Then
                 y = y - 1
@@ -213,10 +213,10 @@ Public Class Form1
             End If
             y = y - 1
 
-            gfx.DrawImage(bm, x + xc, y + yc, 14, 14)
-            gfx.DrawImage(bm, -x + xc, y + yc, 14, 14)
-            gfx.DrawImage(bm, x + xc, -y + yc, 14, 14)
-            gfx.DrawImage(bm, -x + xc, -y + yc, 14, 14)
+            gfx.DrawImage(bm, x + xc, y + yc, Ssize, Ssize)
+            gfx.DrawImage(bm, -x + xc, y + yc, Ssize, Ssize)
+            gfx.DrawImage(bm, x + xc, -y + yc, Ssize, Ssize)
+            gfx.DrawImage(bm, -x + xc, -y + yc, Ssize, Ssize)
 
 
         End While
