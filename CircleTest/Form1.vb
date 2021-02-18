@@ -1,7 +1,7 @@
 ﻿Imports System.Drawing
 Public Class Form1
     Dim radius As Integer
-    Dim x, y, b, fx, fy, w, h As Integer
+    Dim x, y, a, b, fx, fy, Ssize As Integer
     Dim d As Long
     Dim rx_sqr, ry_sqr As Integer
     Dim rx, ry As Integer
@@ -24,11 +24,45 @@ Public Class Form1
         ComboSize.Items.Add("2")
     End Sub
 
+    Private Sub btnDraw_Click(sender As Object, e As EventArgs) Handles btnDraw.Click
+        Dim Shape As String = ComboShape.Text
+        If Shape = "Circle" Then
+            Call MidPoint_Circle(Integer.Parse(tbX.Text), Integer.Parse(tbY.Text), Integer.Parse(tbRadius.Text))
+            Dim data As ListViewItem
+            data = lvData.Items.Add(tbX.Text)
+            data.SubItems.Add(tbY.Text)
+            data.SubItems.Add(ComboShape.Text)
+            data.SubItems.Add(tbRadius.Text)
+            data.SubItems.Add(tbRadiusX.Text)
+            data.SubItems.Add(tbRadiusY.Text)
+            data.SubItems.Add(ComboColor.Text)
+            data.SubItems.Add(ComboSize.Text)
+        ElseIf Shape = "Ellipse" Then
+            Call ellipse(Integer.Parse(tbX.Text), Integer.Parse(tbY.Text), Integer.Parse(tbRadiusX.Text), Integer.Parse(tbRadiusY.Text))
+            Dim data As ListViewItem
+            data = lvData.Items.Add(tbX.Text)
+            data.SubItems.Add(tbY.Text)
+            data.SubItems.Add(ComboShape.Text)
+            data.SubItems.Add(tbRadius.Text)
+            data.SubItems.Add(tbRadiusX.Text)
+            data.SubItems.Add(tbRadiusY.Text)
+            data.SubItems.Add(ComboColor.Text)
+            data.SubItems.Add(ComboSize.Text)
+        Else
+            MsgBox("Choose the shape first", MsgBoxStyle.OkOnly, "More Info required")
+        End If
+
+        'Circle
+        'Ellipse
+    End Sub
+
     Dim bm As New Bitmap(1, 1)
     Dim gfx As Graphics
 
+
+
     Private Sub btnEllipse_Click(sender As Object, e As EventArgs)
-        Call ellipse()
+        ' Call ellipse()
         Dim data As ListViewItem
         data = lvData.Items.Add(tbX.Text)
         data.SubItems.Add(tbY.Text)
@@ -55,7 +89,7 @@ Public Class Form1
 
 
 
-    Private Sub circlePoints(x_center, y_center, width, height)
+    Private Sub circlePoints(x_center, y_center, size)
         'We initially used small elipses to repesent a pixel..Until we learned how to actually set pixels'
         'gfx.DrawEllipse(Pens.Red, New Rectangle(x_center + x, y_center + y, 10, 10))
         'gfx.DrawEllipse(Pens.Red, New Rectangle(x_center + y, y_center + x, 10, 10))
@@ -65,27 +99,39 @@ Public Class Form1
         'gfx.DrawEllipse(Pens.Red, New Rectangle(x_center - y, y_center - x, 10, 10))
         'gfx.DrawEllipse(Pens.Red, New Rectangle(x_center + y, y_center - x, 10, 10))
         'gfx.DrawEllipse(Pens.Red, New Rectangle(x_center + x, y_center - y, 10, 10))
-        gfx.DrawImage(bm, x_center + x, y_center + y, width, height)
-        gfx.DrawImage(bm, x_center + y, y_center + x, width, height)
-        gfx.DrawImage(bm, x_center - y, y_center + x, width, height)
-        gfx.DrawImage(bm, x_center - x, y_center + y, width, height)
-        gfx.DrawImage(bm, x_center - x, y_center - y, width, height)
-        gfx.DrawImage(bm, x_center - y, y_center - x, width, height)
-        gfx.DrawImage(bm, x_center + y, y_center - x, width, height)
-        gfx.DrawImage(bm, x_center + x, y_center - y, width, height)
+        gfx.DrawImage(bm, x_center + x, y_center + y, Ssize, Ssize)
+        gfx.DrawImage(bm, x_center + y, y_center + x, Ssize, Ssize)
+        gfx.DrawImage(bm, x_center - y, y_center + x, Ssize, Ssize)
+        gfx.DrawImage(bm, x_center - x, y_center + y, Ssize, Ssize)
+        gfx.DrawImage(bm, x_center - x, y_center - y, Ssize, Ssize)
+        gfx.DrawImage(bm, x_center - y, y_center - x, Ssize, Ssize)
+        gfx.DrawImage(bm, x_center + y, y_center - x, Ssize, Ssize)
+        gfx.DrawImage(bm, x_center + x, y_center - y, Ssize, Ssize)
 
     End Sub
 
     Public Sub MidPoint_Circle(x_center, y_center, radius)
         gfx = pbDrawing.CreateGraphics
-        'bm.SetPixel(0, 0, Color.Red)
+        Select Case ComboColor.Text
+            Case "Red"
+                bm.SetPixel(0, 0, Color.Red)
+            Case "Green"
+                bm.SetPixel(0, 0, Color.Green)
+            Case "Blue"
+                bm.SetPixel(0, 0, Color.Blue)
+            Case "Yellow"
+                bm.SetPixel(0, 0, Color.Yellow)
+            Case "Purple"
+                bm.SetPixel(0, 0, Color.Purple)
+            Case "White"
+                bm.SetPixel(0, 0, Color.White)
+        End Select
         x = 0
         y = radius
         d = (5 / 4) - radius
-        w = 10
-        h = 10
+        Ssize = Integer.Parse(ComboSize.Text)
         Do While y > x
-            circlePoints(x_center, y_center, w, h)
+            circlePoints(x_center, y_center, Ssize)
             If d < 0 Then
                 d = d + (2 * x) + 1
             Else
@@ -98,10 +144,10 @@ Public Class Form1
     End Sub
 
 
-    Public Sub ellipse()
+    Public Sub ellipse(xc, yc, a, b)
 
         gfx = pbDrawing.CreateGraphics
-        'bm.SetPixel(0, 0, Color.Indigo)
+        bm.SetPixel(0, 0, Color.Indigo)
 
         Select Case ComboColor.Text
             Case "Red"
@@ -118,10 +164,10 @@ Public Class Form1
                 bm.SetPixel(0, 0, Color.White)
         End Select
 
-        Dim xc As Integer = tbX.Text
-        Dim yc As Integer = tbY.Text
-        Dim a As Integer = tbRadiusX.Text
-        Dim b As Integer = tbRadiusY.Text
+        'Dim xc As Integer = tbX.Text
+        'Dim yc As Integer = tbY.Text
+        'Dim a As Integer = tbRadiusX.Text
+        'Dim b As Integer = tbRadiusY.Text
 
         Dim d As Long
 
@@ -176,12 +222,12 @@ Public Class Form1
         End While
     End Sub
 
-    Private Sub pbDrawing_MouseDown(sender As Object, e As MouseEventArgs) Handles pbDrawing.MouseDown
+
+    Private Sub pbDrawing_MouseClick(sender As Object, e As MouseEventArgs) Handles pbDrawing.MouseClick
         Cursor.Current = Cursors.Cross
         If e.Button = MouseButtons.Left Then
             tbX.Text = e.X
             tbY.Text = e.Y
         End If
     End Sub
-
 End Class
