@@ -24,7 +24,6 @@ Partial Class Form1
     Private Sub InitializeComponent()
         Dim ListViewItem1 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("")
         Me.pbDrawing = New System.Windows.Forms.PictureBox()
-        Me.btnCircle = New System.Windows.Forms.Button()
         Me.tbRadius = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.tbY = New System.Windows.Forms.TextBox()
@@ -34,7 +33,6 @@ Partial Class Form1
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.ComboShape = New System.Windows.Forms.ComboBox()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.btnEllipse = New System.Windows.Forms.Button()
         Me.ComboSize = New System.Windows.Forms.ComboBox()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.ComboColor = New System.Windows.Forms.ComboBox()
@@ -43,6 +41,7 @@ Partial Class Form1
         Me.tbRadiusX = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
+        Me.btnDraw = New System.Windows.Forms.Button()
         Me.lvData = New System.Windows.Forms.ListView()
         Me.ColumnHeaderX = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeaderY = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
@@ -67,95 +66,87 @@ Partial Class Form1
         Me.fileNameTb = New System.Windows.Forms.TextBox()
         Me.fullPathTb = New System.Windows.Forms.TextBox()
         Me.directoryFileTb = New System.Windows.Forms.TextBox()
-        Me.btnDraw = New System.Windows.Forms.Button()
+        Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         CType(Me.pbDrawing, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.SaveLoadData.SuspendLayout()
+        Me.GroupBox3.SuspendLayout()
         Me.SuspendLayout()
         '
         'pbDrawing
         '
         Me.pbDrawing.BackColor = System.Drawing.Color.White
-        Me.pbDrawing.Location = New System.Drawing.Point(0, 34)
+        Me.pbDrawing.Location = New System.Drawing.Point(0, 42)
+        Me.pbDrawing.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.pbDrawing.Name = "pbDrawing"
-        Me.pbDrawing.Size = New System.Drawing.Size(1070, 552)
+        Me.pbDrawing.Size = New System.Drawing.Size(1204, 690)
         Me.pbDrawing.TabIndex = 1
         Me.pbDrawing.TabStop = False
-        '
-        'btnCircle
-        '
-        Me.btnCircle.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.btnCircle.Location = New System.Drawing.Point(527, 158)
-        Me.btnCircle.Name = "btnCircle"
-        Me.btnCircle.Size = New System.Drawing.Size(79, 31)
-        Me.btnCircle.TabIndex = 6
-        Me.btnCircle.Text = "Circle"
-        Me.btnCircle.UseVisualStyleBackColor = True
         '
         'tbRadius
         '
         Me.tbRadius.Font = New System.Drawing.Font("Myanmar Text", 8.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle))
-        Me.tbRadius.Location = New System.Drawing.Point(103, 117)
+        Me.tbRadius.Location = New System.Drawing.Point(116, 146)
+        Me.tbRadius.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.tbRadius.Name = "tbRadius"
-        Me.tbRadius.Size = New System.Drawing.Size(103, 33)
+        Me.tbRadius.Size = New System.Drawing.Size(115, 38)
         Me.tbRadius.TabIndex = 5
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(24, 117)
+        Me.Label3.Location = New System.Drawing.Point(27, 146)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(59, 27)
+        Me.Label3.Size = New System.Drawing.Size(72, 32)
         Me.Label3.TabIndex = 4
         Me.Label3.Text = "Radius"
         '
         'tbY
         '
         Me.tbY.Font = New System.Drawing.Font("Myanmar Text", 8.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle))
-        Me.tbY.Location = New System.Drawing.Point(103, 72)
+        Me.tbY.Location = New System.Drawing.Point(116, 90)
+        Me.tbY.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.tbY.Name = "tbY"
-        Me.tbY.Size = New System.Drawing.Size(103, 33)
+        Me.tbY.Size = New System.Drawing.Size(115, 38)
         Me.tbY.TabIndex = 3
         '
         'tbX
         '
         Me.tbX.Font = New System.Drawing.Font("Myanmar Text", 8.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle))
-        Me.tbX.Location = New System.Drawing.Point(103, 26)
+        Me.tbX.Location = New System.Drawing.Point(116, 32)
+        Me.tbX.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.tbX.Name = "tbX"
-        Me.tbX.Size = New System.Drawing.Size(103, 33)
+        Me.tbX.Size = New System.Drawing.Size(115, 38)
         Me.tbX.TabIndex = 2
         '
         'lblYcenter
         '
         Me.lblYcenter.AutoSize = True
-        Me.lblYcenter.Location = New System.Drawing.Point(45, 72)
+        Me.lblYcenter.Location = New System.Drawing.Point(51, 90)
         Me.lblYcenter.Name = "lblYcenter"
-        Me.lblYcenter.Size = New System.Drawing.Size(21, 27)
+        Me.lblYcenter.Size = New System.Drawing.Size(26, 32)
         Me.lblYcenter.TabIndex = 1
         Me.lblYcenter.Text = "Y"
         '
         'lblXcenter
         '
         Me.lblXcenter.AutoSize = True
-        Me.lblXcenter.Location = New System.Drawing.Point(45, 28)
+        Me.lblXcenter.Location = New System.Drawing.Point(51, 35)
         Me.lblXcenter.Name = "lblXcenter"
-        Me.lblXcenter.Size = New System.Drawing.Size(22, 27)
+        Me.lblXcenter.Size = New System.Drawing.Size(27, 32)
         Me.lblXcenter.TabIndex = 0
         Me.lblXcenter.Text = "X"
         '
         'GroupBox1
         '
-        Me.GroupBox1.Controls.Add(Me.btnDraw)
         Me.GroupBox1.Controls.Add(Me.ComboShape)
         Me.GroupBox1.Controls.Add(Me.Label1)
-        Me.GroupBox1.Controls.Add(Me.btnEllipse)
         Me.GroupBox1.Controls.Add(Me.ComboSize)
         Me.GroupBox1.Controls.Add(Me.Label6)
         Me.GroupBox1.Controls.Add(Me.ComboColor)
         Me.GroupBox1.Controls.Add(Me.Label5)
         Me.GroupBox1.Controls.Add(Me.tbRadiusY)
-        Me.GroupBox1.Controls.Add(Me.btnCircle)
         Me.GroupBox1.Controls.Add(Me.tbRadiusX)
         Me.GroupBox1.Controls.Add(Me.Label4)
         Me.GroupBox1.Controls.Add(Me.Label2)
@@ -167,11 +158,11 @@ Partial Class Form1
         Me.GroupBox1.Controls.Add(Me.tbRadius)
         Me.GroupBox1.Font = New System.Drawing.Font("Myanmar Text", 9.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle))
         Me.GroupBox1.ForeColor = System.Drawing.Color.Maroon
-        Me.GroupBox1.Location = New System.Drawing.Point(82, 591)
+        Me.GroupBox1.Location = New System.Drawing.Point(12, 738)
         Me.GroupBox1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Padding = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.GroupBox1.Size = New System.Drawing.Size(672, 205)
+        Me.GroupBox1.Size = New System.Drawing.Size(538, 256)
         Me.GroupBox1.TabIndex = 9
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Fill The Box"
@@ -181,45 +172,37 @@ Partial Class Form1
         Me.ComboShape.Font = New System.Drawing.Font("Myanmar Text", 8.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle))
         Me.ComboShape.FormattingEnabled = True
         Me.ComboShape.Items.AddRange(New Object() {"Circle", "Ellipse"})
-        Me.ComboShape.Location = New System.Drawing.Point(103, 160)
+        Me.ComboShape.Location = New System.Drawing.Point(116, 200)
+        Me.ComboShape.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.ComboShape.Name = "ComboShape"
-        Me.ComboShape.Size = New System.Drawing.Size(103, 32)
+        Me.ComboShape.Size = New System.Drawing.Size(115, 37)
         Me.ComboShape.TabIndex = 18
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(24, 164)
+        Me.Label1.Location = New System.Drawing.Point(27, 205)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(54, 27)
+        Me.Label1.Size = New System.Drawing.Size(67, 32)
         Me.Label1.TabIndex = 17
         Me.Label1.Text = "Shape"
-        '
-        'btnEllipse
-        '
-        Me.btnEllipse.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.btnEllipse.Location = New System.Drawing.Point(527, 35)
-        Me.btnEllipse.Name = "btnEllipse"
-        Me.btnEllipse.Size = New System.Drawing.Size(79, 31)
-        Me.btnEllipse.TabIndex = 11
-        Me.btnEllipse.Text = "Ellipse"
-        Me.btnEllipse.UseVisualStyleBackColor = True
         '
         'ComboSize
         '
         Me.ComboSize.Font = New System.Drawing.Font("Myanmar Text", 8.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle))
         Me.ComboSize.FormattingEnabled = True
-        Me.ComboSize.Location = New System.Drawing.Point(352, 160)
+        Me.ComboSize.Location = New System.Drawing.Point(396, 200)
+        Me.ComboSize.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.ComboSize.Name = "ComboSize"
-        Me.ComboSize.Size = New System.Drawing.Size(103, 32)
+        Me.ComboSize.Size = New System.Drawing.Size(115, 37)
         Me.ComboSize.TabIndex = 16
         '
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(280, 162)
+        Me.Label6.Location = New System.Drawing.Point(315, 202)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(39, 27)
+        Me.Label6.Size = New System.Drawing.Size(49, 32)
         Me.Label6.TabIndex = 15
         Me.Label6.Text = "Size"
         '
@@ -227,64 +210,79 @@ Partial Class Form1
         '
         Me.ComboColor.Font = New System.Drawing.Font("Myanmar Text", 8.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle))
         Me.ComboColor.FormattingEnabled = True
-        Me.ComboColor.Location = New System.Drawing.Point(352, 112)
+        Me.ComboColor.Location = New System.Drawing.Point(396, 140)
+        Me.ComboColor.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.ComboColor.Name = "ComboColor"
-        Me.ComboColor.Size = New System.Drawing.Size(103, 32)
+        Me.ComboColor.Size = New System.Drawing.Size(115, 37)
         Me.ComboColor.TabIndex = 14
         '
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(270, 112)
+        Me.Label5.Location = New System.Drawing.Point(304, 140)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(49, 27)
+        Me.Label5.Size = New System.Drawing.Size(60, 32)
         Me.Label5.TabIndex = 13
         Me.Label5.Text = "Color"
         '
         'tbRadiusY
         '
         Me.tbRadiusY.Font = New System.Drawing.Font("Myanmar Text", 8.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle))
-        Me.tbRadiusY.Location = New System.Drawing.Point(352, 74)
+        Me.tbRadiusY.Location = New System.Drawing.Point(396, 92)
+        Me.tbRadiusY.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.tbRadiusY.Name = "tbRadiusY"
-        Me.tbRadiusY.Size = New System.Drawing.Size(103, 33)
+        Me.tbRadiusY.Size = New System.Drawing.Size(115, 38)
         Me.tbRadiusY.TabIndex = 12
         '
         'tbRadiusX
         '
         Me.tbRadiusX.Font = New System.Drawing.Font("Myanmar Text", 8.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle))
-        Me.tbRadiusX.Location = New System.Drawing.Point(352, 26)
+        Me.tbRadiusX.Location = New System.Drawing.Point(396, 32)
+        Me.tbRadiusX.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.tbRadiusX.Name = "tbRadiusX"
-        Me.tbRadiusX.Size = New System.Drawing.Size(103, 33)
+        Me.tbRadiusX.Size = New System.Drawing.Size(115, 38)
         Me.tbRadiusX.TabIndex = 11
         '
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(255, 74)
+        Me.Label4.Location = New System.Drawing.Point(287, 92)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(72, 27)
+        Me.Label4.Size = New System.Drawing.Size(88, 32)
         Me.Label4.TabIndex = 10
         Me.Label4.Text = "Y Radius"
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(254, 28)
+        Me.Label2.Location = New System.Drawing.Point(286, 35)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(73, 27)
+        Me.Label2.Size = New System.Drawing.Size(89, 32)
         Me.Label2.TabIndex = 9
         Me.Label2.Text = "X Radius"
+        '
+        'btnDraw
+        '
+        Me.btnDraw.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.btnDraw.Location = New System.Drawing.Point(143, 119)
+        Me.btnDraw.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.btnDraw.Name = "btnDraw"
+        Me.btnDraw.Size = New System.Drawing.Size(218, 40)
+        Me.btnDraw.TabIndex = 19
+        Me.btnDraw.Text = "Draw"
+        Me.btnDraw.UseVisualStyleBackColor = True
         '
         'lvData
         '
         Me.lvData.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeaderX, Me.ColumnHeaderY, Me.ColumnHeaderShape, Me.ColumnHeaderRadius, Me.ColumnHeaderRadiusX, Me.ColumnHeaderRadiusY, Me.ColumnHeaderColor, Me.ColumnHeaderSize})
         Me.lvData.ForeColor = System.Drawing.Color.Black
+        Me.lvData.FullRowSelect = True
         Me.lvData.HideSelection = False
         Me.lvData.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem1})
-        Me.lvData.Location = New System.Drawing.Point(1083, 90)
+        Me.lvData.Location = New System.Drawing.Point(1219, 42)
         Me.lvData.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.lvData.Name = "lvData"
-        Me.lvData.Size = New System.Drawing.Size(504, 274)
+        Me.lvData.Size = New System.Drawing.Size(566, 690)
         Me.lvData.TabIndex = 10
         Me.lvData.UseCompatibleStateImageBehavior = False
         Me.lvData.View = System.Windows.Forms.View.Details
@@ -323,18 +321,19 @@ Partial Class Form1
         '
         'GroupBox2
         '
+        Me.GroupBox2.Controls.Add(Me.btnDraw)
         Me.GroupBox2.Controls.Add(Me.btnClearScreen)
         Me.GroupBox2.Controls.Add(Me.btnRefresh)
         Me.GroupBox2.Controls.Add(Me.btnUpdate)
         Me.GroupBox2.Controls.Add(Me.btnDelete)
         Me.GroupBox2.Font = New System.Drawing.Font("Myanmar Text", 10.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle))
         Me.GroupBox2.ForeColor = System.Drawing.Color.Maroon
-        Me.GroupBox2.Location = New System.Drawing.Point(822, 626)
+        Me.GroupBox2.Location = New System.Drawing.Point(595, 773)
         Me.GroupBox2.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Padding = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.GroupBox2.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.GroupBox2.Size = New System.Drawing.Size(351, 155)
+        Me.GroupBox2.Size = New System.Drawing.Size(414, 191)
         Me.GroupBox2.TabIndex = 17
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Controler"
@@ -343,9 +342,10 @@ Partial Class Form1
         '
         Me.btnClearScreen.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.btnClearScreen.Font = New System.Drawing.Font("Myanmar Text", 8.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle))
-        Me.btnClearScreen.Location = New System.Drawing.Point(168, 98)
+        Me.btnClearScreen.Location = New System.Drawing.Point(263, 44)
+        Me.btnClearScreen.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.btnClearScreen.Name = "btnClearScreen"
-        Me.btnClearScreen.Size = New System.Drawing.Size(107, 26)
+        Me.btnClearScreen.Size = New System.Drawing.Size(120, 32)
         Me.btnClearScreen.TabIndex = 10
         Me.btnClearScreen.Text = "Clear Screen"
         Me.btnClearScreen.UseVisualStyleBackColor = True
@@ -354,9 +354,10 @@ Partial Class Form1
         '
         Me.btnRefresh.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.btnRefresh.Font = New System.Drawing.Font("Myanmar Text", 8.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle))
-        Me.btnRefresh.Location = New System.Drawing.Point(180, 43)
+        Me.btnRefresh.Location = New System.Drawing.Point(143, 44)
+        Me.btnRefresh.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.btnRefresh.Name = "btnRefresh"
-        Me.btnRefresh.Size = New System.Drawing.Size(79, 26)
+        Me.btnRefresh.Size = New System.Drawing.Size(89, 32)
         Me.btnRefresh.TabIndex = 9
         Me.btnRefresh.Text = "Refresh"
         Me.btnRefresh.UseVisualStyleBackColor = True
@@ -365,9 +366,10 @@ Partial Class Form1
         '
         Me.btnUpdate.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.btnUpdate.Font = New System.Drawing.Font("Myanmar Text", 8.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle))
-        Me.btnUpdate.Location = New System.Drawing.Point(52, 99)
+        Me.btnUpdate.Location = New System.Drawing.Point(18, 123)
+        Me.btnUpdate.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.btnUpdate.Name = "btnUpdate"
-        Me.btnUpdate.Size = New System.Drawing.Size(79, 26)
+        Me.btnUpdate.Size = New System.Drawing.Size(89, 32)
         Me.btnUpdate.TabIndex = 8
         Me.btnUpdate.Text = "Update"
         Me.btnUpdate.UseVisualStyleBackColor = True
@@ -376,9 +378,10 @@ Partial Class Form1
         '
         Me.btnDelete.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.btnDelete.Font = New System.Drawing.Font("Myanmar Text", 8.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle))
-        Me.btnDelete.Location = New System.Drawing.Point(52, 43)
+        Me.btnDelete.Location = New System.Drawing.Point(18, 44)
+        Me.btnDelete.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.btnDelete.Name = "btnDelete"
-        Me.btnDelete.Size = New System.Drawing.Size(79, 26)
+        Me.btnDelete.Size = New System.Drawing.Size(89, 32)
         Me.btnDelete.TabIndex = 7
         Me.btnDelete.Text = "Delete"
         Me.btnDelete.UseVisualStyleBackColor = True
@@ -386,12 +389,12 @@ Partial Class Form1
         'SaveLoadData
         '
         Me.SaveLoadData.BackColor = System.Drawing.Color.DarkSalmon
+        Me.SaveLoadData.GripMargin = New System.Windows.Forms.Padding(2, 2, 0, 2)
         Me.SaveLoadData.ImageScalingSize = New System.Drawing.Size(24, 24)
         Me.SaveLoadData.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ClickMeToolStripMenuItem})
         Me.SaveLoadData.Location = New System.Drawing.Point(0, 0)
         Me.SaveLoadData.Name = "SaveLoadData"
-        Me.SaveLoadData.Padding = New System.Windows.Forms.Padding(5, 2, 0, 2)
-        Me.SaveLoadData.Size = New System.Drawing.Size(1597, 33)
+        Me.SaveLoadData.Size = New System.Drawing.Size(1797, 38)
         Me.SaveLoadData.TabIndex = 18
         Me.SaveLoadData.Text = "MenuStrip1"
         '
@@ -403,19 +406,19 @@ Partial Class Form1
         Me.ClickMeToolStripMenuItem.Font = New System.Drawing.Font("Segoe Script", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ClickMeToolStripMenuItem.ForeColor = System.Drawing.Color.Firebrick
         Me.ClickMeToolStripMenuItem.Name = "ClickMeToolStripMenuItem"
-        Me.ClickMeToolStripMenuItem.Size = New System.Drawing.Size(103, 29)
+        Me.ClickMeToolStripMenuItem.Size = New System.Drawing.Size(119, 34)
         Me.ClickMeToolStripMenuItem.Text = "Click Me "
         '
         'SaveYourDataHereToolStripMenuItem
         '
         Me.SaveYourDataHereToolStripMenuItem.Name = "SaveYourDataHereToolStripMenuItem"
-        Me.SaveYourDataHereToolStripMenuItem.Size = New System.Drawing.Size(261, 30)
+        Me.SaveYourDataHereToolStripMenuItem.Size = New System.Drawing.Size(311, 38)
         Me.SaveYourDataHereToolStripMenuItem.Text = "Save Your Data Here"
         '
         'LoadYourDataToolStripMenuItem
         '
         Me.LoadYourDataToolStripMenuItem.Name = "LoadYourDataToolStripMenuItem"
-        Me.LoadYourDataToolStripMenuItem.Size = New System.Drawing.Size(261, 30)
+        Me.LoadYourDataToolStripMenuItem.Size = New System.Drawing.Size(311, 38)
         Me.LoadYourDataToolStripMenuItem.Text = "Load Your Data"
         '
         'Label7
@@ -423,10 +426,10 @@ Partial Class Form1
         Me.Label7.AutoSize = True
         Me.Label7.Font = New System.Drawing.Font("Myanmar Text", 7.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle))
         Me.Label7.ForeColor = System.Drawing.Color.Maroon
-        Me.Label7.Location = New System.Drawing.Point(1083, 452)
+        Me.Label7.Location = New System.Drawing.Point(34, 120)
         Me.Label7.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(65, 21)
+        Me.Label7.Size = New System.Drawing.Size(79, 25)
         Me.Label7.TabIndex = 81
         Me.Label7.Text = "File Name"
         '
@@ -435,10 +438,10 @@ Partial Class Form1
         Me.Label8.AutoSize = True
         Me.Label8.Font = New System.Drawing.Font("Myanmar Text", 7.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle))
         Me.Label8.ForeColor = System.Drawing.Color.Maroon
-        Me.Label8.Location = New System.Drawing.Point(1083, 513)
+        Me.Label8.Location = New System.Drawing.Point(44, 196)
         Me.Label8.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(57, 21)
+        Me.Label8.Size = New System.Drawing.Size(69, 25)
         Me.Label8.TabIndex = 80
         Me.Label8.Text = "Full Path"
         '
@@ -447,66 +450,72 @@ Partial Class Form1
         Me.Label9.AutoSize = True
         Me.Label9.Font = New System.Drawing.Font("Myanmar Text", 7.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle))
         Me.Label9.ForeColor = System.Drawing.Color.Maroon
-        Me.Label9.Location = New System.Drawing.Point(1083, 386)
+        Me.Label9.Location = New System.Drawing.Point(25, 45)
         Me.Label9.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(85, 21)
+        Me.Label9.Size = New System.Drawing.Size(102, 25)
         Me.Label9.TabIndex = 79
         Me.Label9.Text = "Directory File"
         '
         'fileNameTb
         '
-        Me.fileNameTb.Location = New System.Drawing.Point(1087, 476)
-        Me.fileNameTb.Margin = New System.Windows.Forms.Padding(4)
+        Me.fileNameTb.Location = New System.Drawing.Point(163, 111)
+        Me.fileNameTb.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.fileNameTb.Name = "fileNameTb"
-        Me.fileNameTb.Size = New System.Drawing.Size(493, 22)
+        Me.fileNameTb.Size = New System.Drawing.Size(437, 46)
         Me.fileNameTb.TabIndex = 78
         '
         'fullPathTb
         '
-        Me.fullPathTb.Location = New System.Drawing.Point(1087, 537)
-        Me.fullPathTb.Margin = New System.Windows.Forms.Padding(4)
+        Me.fullPathTb.Location = New System.Drawing.Point(163, 187)
+        Me.fullPathTb.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.fullPathTb.Name = "fullPathTb"
-        Me.fullPathTb.Size = New System.Drawing.Size(493, 22)
+        Me.fullPathTb.Size = New System.Drawing.Size(437, 46)
         Me.fullPathTb.TabIndex = 77
         '
         'directoryFileTb
         '
-        Me.directoryFileTb.Location = New System.Drawing.Point(1087, 410)
-        Me.directoryFileTb.Margin = New System.Windows.Forms.Padding(4)
+        Me.directoryFileTb.Location = New System.Drawing.Point(163, 36)
+        Me.directoryFileTb.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.directoryFileTb.Name = "directoryFileTb"
-        Me.directoryFileTb.Size = New System.Drawing.Size(493, 22)
+        Me.directoryFileTb.Size = New System.Drawing.Size(437, 46)
         Me.directoryFileTb.TabIndex = 76
         '
-        'btnDraw
+        'GroupBox3
         '
-        Me.btnDraw.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.btnDraw.Location = New System.Drawing.Point(527, 94)
-        Me.btnDraw.Name = "btnDraw"
-        Me.btnDraw.Size = New System.Drawing.Size(79, 31)
-        Me.btnDraw.TabIndex = 19
-        Me.btnDraw.Text = "Draw"
-        Me.btnDraw.UseVisualStyleBackColor = True
+        Me.GroupBox3.Controls.Add(Me.fullPathTb)
+        Me.GroupBox3.Controls.Add(Me.Label7)
+        Me.GroupBox3.Controls.Add(Me.directoryFileTb)
+        Me.GroupBox3.Controls.Add(Me.Label8)
+        Me.GroupBox3.Controls.Add(Me.fileNameTb)
+        Me.GroupBox3.Controls.Add(Me.Label9)
+        Me.GroupBox3.Font = New System.Drawing.Font("Myanmar Text", 10.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle))
+        Me.GroupBox3.ForeColor = System.Drawing.Color.Maroon
+        Me.GroupBox3.Location = New System.Drawing.Point(1058, 738)
+        Me.GroupBox3.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.GroupBox3.Name = "GroupBox3"
+        Me.GroupBox3.Padding = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.GroupBox3.RightToLeft = System.Windows.Forms.RightToLeft.Yes
+        Me.GroupBox3.Size = New System.Drawing.Size(702, 256)
+        Me.GroupBox3.TabIndex = 18
+        Me.GroupBox3.TabStop = False
+        Me.GroupBox3.Text = "Search Your Data"
         '
         'Form1
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoScroll = True
         Me.BackColor = System.Drawing.Color.DarkSalmon
-        Me.ClientSize = New System.Drawing.Size(1597, 827)
-        Me.Controls.Add(Me.Label7)
-        Me.Controls.Add(Me.Label8)
-        Me.Controls.Add(Me.Label9)
-        Me.Controls.Add(Me.fileNameTb)
-        Me.Controls.Add(Me.fullPathTb)
-        Me.Controls.Add(Me.directoryFileTb)
+        Me.ClientSize = New System.Drawing.Size(1797, 1034)
+        Me.Controls.Add(Me.GroupBox3)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.lvData)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.pbDrawing)
         Me.Controls.Add(Me.SaveLoadData)
         Me.MainMenuStrip = Me.SaveLoadData
+        Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Name = "Form1"
         Me.Text = "Circle and Ellipse"
         CType(Me.pbDrawing, System.ComponentModel.ISupportInitialize).EndInit()
@@ -515,6 +524,8 @@ Partial Class Form1
         Me.GroupBox2.ResumeLayout(False)
         Me.SaveLoadData.ResumeLayout(False)
         Me.SaveLoadData.PerformLayout()
+        Me.GroupBox3.ResumeLayout(False)
+        Me.GroupBox3.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -526,7 +537,6 @@ Partial Class Form1
     Friend WithEvents lblXcenter As Label
     Friend WithEvents Label3 As Label
     Friend WithEvents tbRadius As TextBox
-    Friend WithEvents btnCircle As Button
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents ComboSize As ComboBox
     Friend WithEvents Label6 As Label
@@ -552,7 +562,6 @@ Partial Class Form1
     Friend WithEvents fileNameTb As TextBox
     Friend WithEvents fullPathTb As TextBox
     Friend WithEvents directoryFileTb As TextBox
-    Friend WithEvents btnEllipse As Button
     Friend WithEvents ComboShape As ComboBox
     Friend WithEvents Label1 As Label
     Friend WithEvents ColumnHeaderX As ColumnHeader
@@ -564,4 +573,5 @@ Partial Class Form1
     Friend WithEvents ColumnHeaderColor As ColumnHeader
     Friend WithEvents ColumnHeaderSize As ColumnHeader
     Friend WithEvents btnDraw As Button
+    Friend WithEvents GroupBox3 As GroupBox
 End Class
