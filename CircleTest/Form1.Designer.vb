@@ -32,6 +32,7 @@ Partial Class Form1
         Me.lblYcenter = New System.Windows.Forms.Label()
         Me.lblXcenter = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.btnDraw = New System.Windows.Forms.Button()
         Me.ComboShape = New System.Windows.Forms.ComboBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.btnEllipse = New System.Windows.Forms.Button()
@@ -67,7 +68,6 @@ Partial Class Form1
         Me.fileNameTb = New System.Windows.Forms.TextBox()
         Me.fullPathTb = New System.Windows.Forms.TextBox()
         Me.directoryFileTb = New System.Windows.Forms.TextBox()
-        Me.btnDraw = New System.Windows.Forms.Button()
         CType(Me.pbDrawing, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -175,6 +175,16 @@ Partial Class Form1
         Me.GroupBox1.TabIndex = 9
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Fill The Box"
+        '
+        'btnDraw
+        '
+        Me.btnDraw.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.btnDraw.Location = New System.Drawing.Point(527, 94)
+        Me.btnDraw.Name = "btnDraw"
+        Me.btnDraw.Size = New System.Drawing.Size(79, 31)
+        Me.btnDraw.TabIndex = 19
+        Me.btnDraw.Text = "Draw"
+        Me.btnDraw.UseVisualStyleBackColor = True
         '
         'ComboShape
         '
@@ -477,16 +487,6 @@ Partial Class Form1
         Me.directoryFileTb.Name = "directoryFileTb"
         Me.directoryFileTb.Size = New System.Drawing.Size(493, 22)
         Me.directoryFileTb.TabIndex = 76
-        '
-        'btnDraw
-        '
-        Me.btnDraw.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.btnDraw.Location = New System.Drawing.Point(527, 94)
-        Me.btnDraw.Name = "btnDraw"
-        Me.btnDraw.Size = New System.Drawing.Size(79, 31)
-        Me.btnDraw.TabIndex = 19
-        Me.btnDraw.Text = "Draw"
-        Me.btnDraw.UseVisualStyleBackColor = True
         '
         'Form1
         '

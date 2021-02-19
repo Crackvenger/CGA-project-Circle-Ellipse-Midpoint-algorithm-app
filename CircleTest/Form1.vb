@@ -1,4 +1,5 @@
 ﻿Imports System.Drawing
+Imports System.IO
 Public Class Form1
     Dim radius As Integer
     Dim x, y, a, b, fx, fy, Ssize As Integer
@@ -8,7 +9,11 @@ Public Class Form1
     Dim midpoint As Integer
     Dim x_center As Integer
     Dim y_center As Integer
+    Dim writer As StreamWriter
+    Dim data As ListViewItem
 
+    Dim path As String = "D:\Temp\data.txt"
+    Dim fs As FileStream = File.Create(path)
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.WindowState = FormWindowState.Maximized
 
@@ -28,7 +33,6 @@ Public Class Form1
         Dim Shape As String = ComboShape.Text
         If Shape = "Circle" Then
             Call MidPoint_Circle(Integer.Parse(tbX.Text), Integer.Parse(tbY.Text), Integer.Parse(tbRadius.Text))
-            Dim data As ListViewItem
             data = lvData.Items.Add(tbX.Text)
             data.SubItems.Add(tbY.Text)
             data.SubItems.Add(ComboShape.Text)
@@ -39,7 +43,6 @@ Public Class Form1
             data.SubItems.Add(ComboSize.Text)
         ElseIf Shape = "Ellipse" Then
             Call ellipse(Integer.Parse(tbX.Text), Integer.Parse(tbY.Text), Integer.Parse(tbRadiusX.Text), Integer.Parse(tbRadiusY.Text))
-            Dim data As ListViewItem
             data = lvData.Items.Add(tbX.Text)
             data.SubItems.Add(tbY.Text)
             data.SubItems.Add(ComboShape.Text)
@@ -54,6 +57,32 @@ Public Class Form1
 
         'Circle
         'Ellipse
+    End Sub
+
+    Private Sub SaveYourDataHereToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SaveYourDataHereToolStripMenuItem.Click
+        Save()
+    End Sub
+
+    Public Sub Save()
+        Dim save As SaveFileDialog
+        save = New SaveFileDialog()
+        save.CreatePrompt = True
+        save.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*"
+
+        Try
+            If save.ShowDialog() = DialogResult.OK Then
+                writer = File.AppendText(save.FileName)
+                For Each data In lvData.Items
+                    writer.WriteLine(data.Text & "#" & data.SubItems(1).Text & "#" & data.SubItems(2).Text &
+                                      "#" & data.SubItems(3).Text & "#" & data.SubItems(4).Text & "#" & data.SubItems(5).Text &
+                                     "#" & data.SubItems(6).Text & "#" & data.SubItems(7).Text)
+                Next
+            End If
+
+        Catch ex As Exception
+
+        End Try
+
     End Sub
 
     Dim bm As New Bitmap(1, 1)
