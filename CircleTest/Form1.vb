@@ -36,29 +36,23 @@ Public Class Form1
         ComboSize.Items.Add("2")
     End Sub
 
+
+
     'Draw a Circle or Ellipse
     Private Sub btnDraw_Click(sender As Object, e As EventArgs) Handles btnDraw.Click
         Dim Shape As String = ComboShape.Text
         Dim data As ListViewItem
+        data = lvData.Items.Add(tbX.Text)
+        data.SubItems.Add(tbY.Text)
+        data.SubItems.Add(ComboShape.Text)
+        data.SubItems.Add(tbRadius.Text)
+        data.SubItems.Add(tbRadiusX.Text)
+        data.SubItems.Add(tbRadiusY.Text)
+        data.SubItems.Add(ComboColor.Text)
+        data.SubItems.Add(ComboSize.Text)
         If Shape = "Circle" Then
-            data = lvData.Items.Add(tbX.Text)
-            data.SubItems.Add(tbY.Text)
-            data.SubItems.Add(ComboShape.Text)
-            data.SubItems.Add(tbRadius.Text)
-            data.SubItems.Add(tbRadius.Text)
-            data.SubItems.Add(tbRadius.Text)
-            data.SubItems.Add(ComboColor.Text)
-            data.SubItems.Add(ComboSize.Text)
             Call MidPoint_Circle(Integer.Parse(tbX.Text), Integer.Parse(tbY.Text), Integer.Parse(tbRadius.Text), Integer.Parse(ComboSize.Text), ComboColor.Text)
         ElseIf Shape = "Ellipse" Then
-            data = lvData.Items.Add(tbX.Text)
-            data.SubItems.Add(tbY.Text)
-            data.SubItems.Add(ComboShape.Text)
-            data.SubItems.Add(tbRadius.Text)
-            data.SubItems.Add(tbRadiusX.Text)
-            data.SubItems.Add(tbRadiusY.Text)
-            data.SubItems.Add(ComboColor.Text)
-            data.SubItems.Add(ComboSize.Text)
             Call ellipse(Integer.Parse(tbX.Text), Integer.Parse(tbY.Text), Integer.Parse(tbRadiusX.Text), Integer.Parse(tbRadiusY.Text), Integer.Parse(ComboSize.Text), ComboColor.Text)
         Else
             MsgBox("Choose the shape first", MsgBoxStyle.OkOnly, "More Info required")
@@ -110,99 +104,25 @@ Public Class Form1
     End Sub
 
     Public Sub ayorefresh()
-        If lvData.SelectedItems.Count < 0 Then
-            For Each data As ListViewItem In lvData.Items
-                Dim dataX = data.Text
-                Dim dataY = data.SubItems(1).Text
-                Dim shape = data.SubItems(2).Text
-                Dim radius = data.SubItems(3).Text
-                Dim radiusX = data.SubItems(4).Text
-                Dim radiusY = data.SubItems(5).Text
-                Dim colors = data.SubItems(6).Text
-                Dim Tsize = data.SubItems(7).Text
+        For Each data As ListViewItem In lvData.Items
+            Dim dataX = data.Text
+            Dim dataY = data.SubItems(1).Text
+            Dim shape = data.SubItems(2).Text
+            Dim radius = data.SubItems(3).Text
+            Dim radiusX = data.SubItems(4).Text
+            Dim radiusY = data.SubItems(5).Text
+            Dim colors = data.SubItems(6).Text
+            Dim Tsize = data.SubItems(7).Text
 
-                Select Case shape
-                    Case "Circle"
-                        Call MidPoint_Circle(Integer.Parse(tbX.Text), Integer.Parse(tbY.Text), Integer.Parse(tbRadius.Text), Integer.Parse(Tsize), colors)
+            Select Case shape
+                Case "Circle"
+                    Call MidPoint_Circle(Integer.Parse(dataX), Integer.Parse(dataY), Integer.Parse(radius), Integer.Parse(Tsize), colors)
+                Case "Ellipse"
+                    Call ellipse(Integer.Parse(dataX), Integer.Parse(dataY), Integer.Parse(radiusX), Integer.Parse(radiusY), Integer.Parse(Tsize), colors)
+            End Select
 
+        Next
 
-                    Case "Ellipse"
-                        gfx = pbDrawing.CreateGraphics
-
-                        Select Case colors
-                            Case "Red"
-                                bm.SetPixel(0, 0, Color.Red)
-                            Case "Green"
-                                bm.SetPixel(0, 0, Color.Green)
-                            Case "Blue"
-                                bm.SetPixel(0, 0, Color.Blue)
-                            Case "Yellow"
-                                bm.SetPixel(0, 0, Color.Yellow)
-                            Case "Purple"
-                                bm.SetPixel(0, 0, Color.Purple)
-                            Case "White"
-                                bm.SetPixel(0, 0, Color.White)
-                        End Select
-
-                        Dim d As Long
-                        Dim xc As Integer = dataX
-                        Dim yc As Integer = dataY
-                        Dim rx As Integer = radiusX
-                        Dim ry As Integer = radiusY
-                        'semua yang ada di dataX tapindah di xc , pada saat indhira pnge lgsg mo tpindah dp data
-
-                        Dim x = 0
-                        Dim y = ry
-
-                        Dim a_square = rx * rx
-                        Dim b_square = ry * ry
-
-                        'region 1
-                        d = 4 * b_square - 4 * a_square * ry + a_square
-
-                        Do
-                            Ssize = Integer.Parse(Tsize)
-                            gfx.DrawImage(bm, x + xc, y + yc, 14, 14)
-                            gfx.DrawImage(bm, -x + xc, y + yc, 14, 14)
-                            gfx.DrawImage(bm, x + xc, -y + yc, 14, 14)
-                            gfx.DrawImage(bm, -x + xc, -y + yc, 14, 14)
-
-                            If d > 0 Then
-                                y = y - 1
-                                d = d + b_square * (8 * x + 12) + a_square * (8 - 8 * y)
-                            Else
-                                d = d + b_square * (8 * x + 12)
-                            End If
-
-                            x = x + 1
-
-
-                        Loop Until 2 * b_square * (x + 1) >= a_square * (2 * y - 1)
-
-                        'region 2
-                        d = b_square * ((2 * x + 1) * (2 * x + 1)) + 4 * a_square * ((y - 1) * (y - 1)) - 4 * a_square * b_square
-
-                        While y > 0
-
-
-                            If d < 0 Then
-                                x = x + 1
-                                d = d + b_square * (8 * x + 8) + a_square * (12 - 8 * y)
-                            Else
-                                d = d + a_square * (12 - 8 * y)
-                            End If
-                            y = y - 1
-
-                            gfx.DrawImage(bm, x + xc, y + yc, 14, 14)
-                            gfx.DrawImage(bm, -x + xc, y + yc, 14, 14)
-                            gfx.DrawImage(bm, x + xc, -y + yc, 14, 14)
-                            gfx.DrawImage(bm, -x + xc, -y + yc, 14, 14)
-                        End While
-                End Select
-
-            Next
-
-        End If
 
     End Sub
 
@@ -386,5 +306,24 @@ Public Class Form1
         ComboColor.Text = colors
         ComboSize.Text = size
 
+    End Sub
+
+    Private Sub ComboShape_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboShape.SelectedIndexChanged
+        If ComboShape.Text = "Circle" Then
+            tbRadius.Clear()
+            tbRadius.Enabled = True
+            tbRadiusX.Enabled = False
+            tbRadiusY.Enabled = False
+            tbRadiusX.Text = "None"
+            tbRadiusY.Text = "None"
+
+        ElseIf ComboShape.Text = "Ellipse" Then
+            tbRadiusX.Clear()
+            tbRadiusY.Clear()
+            tbRadiusX.Enabled = True
+            tbRadiusY.Enabled = True
+            tbRadius.Enabled = False
+            tbRadius.Text = "None"
+        End If
     End Sub
 End Class

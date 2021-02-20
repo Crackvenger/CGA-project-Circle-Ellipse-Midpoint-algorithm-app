@@ -22,7 +22,6 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim ListViewItem1 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("")
         Me.pbDrawing = New System.Windows.Forms.PictureBox()
         Me.tbRadius = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -268,7 +267,6 @@ Partial Class Form1
         Me.lvData.ForeColor = System.Drawing.Color.Black
         Me.lvData.FullRowSelect = True
         Me.lvData.HideSelection = False
-        Me.lvData.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem1})
         Me.lvData.Location = New System.Drawing.Point(1084, 34)
         Me.lvData.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.lvData.Name = "lvData"
