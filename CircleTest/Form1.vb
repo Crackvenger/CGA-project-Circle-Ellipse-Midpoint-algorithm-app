@@ -103,6 +103,24 @@ Public Class Form1
         ayorefresh()
     End Sub
 
+    Private Sub btnUpdate_Click(sender As Object, e As EventArgs) Handles btnUpdate.Click
+        Dim data As ListViewItem = lvData.SelectedItems(0)
+        Dim intIndex As Integer = data.Index
+        data.Remove()
+
+        data = lvData.Items.Insert(intIndex, tbX.Text)
+        data.SubItems.Add(tbY.Text)
+        data.SubItems.Add(ComboShape.Text)
+        data.SubItems.Add(tbRadius.Text)
+        data.SubItems.Add(tbRadiusX.Text)
+        data.SubItems.Add(tbRadiusY.Text)
+        data.SubItems.Add(ComboColor.Text)
+        data.SubItems.Add(ComboSize.Text)
+
+        pbDrawing.Refresh()
+        ayorefresh()
+    End Sub
+
     Public Sub ayorefresh()
         For Each data As ListViewItem In lvData.Items
             Dim dataX = data.Text
